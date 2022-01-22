@@ -32,6 +32,8 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'react/jsx-curly-newline': 'off',
+    'react/no-unused-prop-types': 'off',
+    'react/require-default-props': 'off',
     'react/prop-types': 'off',
     'no-use-before-define': 'off',
     'react/jsx-props-no-spreading': 'off',
