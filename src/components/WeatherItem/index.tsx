@@ -1,24 +1,17 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import { TouchableOpacityProps } from 'react-native';
 
-import { AntDesign } from '@expo/vector-icons';
-
-import { Button } from '../Button';
+import { Temperature } from '../Temperature';
 import {
   Container,
   WeatherBody,
   WeatherDescription,
-  WeatherForecast,
   WeatherHeader,
   WeatherTitle,
   WeatherTitleDescription,
-  WeatherForecastTemperature,
-  WeatherForecastButton,
-  WeatherForecastButtonText,
-  WeatherForecastSeparator,
 } from './styles';
 
-interface IWeatherContentProps {
+interface IWeatherContentProps extends TouchableOpacityProps {
   data: {
     city: string;
     country: string;
@@ -29,31 +22,17 @@ interface IWeatherContentProps {
 export const WeatherContent: React.FC<IWeatherContentProps> = ({
   data,
   children,
+  ...rest
 }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <WeatherHeader>
         <WeatherTitleDescription>
           <WeatherTitle>{data.city}</WeatherTitle>
           <WeatherDescription>{data.country}</WeatherDescription>
         </WeatherTitleDescription>
 
-        {data.temperature && (
-          <WeatherForecast>
-            <WeatherForecastTemperature>32</WeatherForecastTemperature>
-            <WeatherForecastButton>
-              <WeatherForecastButtonText isActive>°C</WeatherForecastButtonText>
-            </WeatherForecastButton>
-
-            <WeatherForecastSeparator />
-
-            <WeatherForecastButton>
-              <WeatherForecastButtonText isActive={false}>
-                °F
-              </WeatherForecastButtonText>
-            </WeatherForecastButton>
-          </WeatherForecast>
-        )}
+        {data.temperature && <Temperature />}
       </WeatherHeader>
       <WeatherBody>{children}</WeatherBody>
     </Container>
