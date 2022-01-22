@@ -3,8 +3,14 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../screens/Home';
+import { SearchPage } from '../screens/Search';
 
-const { Navigator, Screen } = createStackNavigator();
+export type IAppStackParamsList = {
+  Home: undefined;
+  SearchPage: undefined;
+};
+
+const { Navigator, Screen } = createStackNavigator<IAppStackParamsList>();
 
 const AppRoutes: React.FC = () => {
   return (
@@ -12,8 +18,10 @@ const AppRoutes: React.FC = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Home"
     >
-      <Screen name="home" component={Home} />
+      <Screen name="Home" component={Home} />
+      <Screen name="SearchPage" component={SearchPage} />
     </Navigator>
   );
 };
