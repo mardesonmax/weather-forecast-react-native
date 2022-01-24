@@ -9,7 +9,13 @@ import { SearchPage } from '../screens/Search';
 export type IAppStackParamsList = {
   Home: undefined;
   SearchPage: undefined;
-  ListWeather: undefined;
+  ListWeather: {
+    name: string;
+    location: {
+      lng: number;
+      lat: number;
+    };
+  };
 };
 
 const { Navigator, Screen } = createStackNavigator<IAppStackParamsList>();

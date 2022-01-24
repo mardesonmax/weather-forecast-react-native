@@ -3,12 +3,11 @@ export default {
     primary: '#00aaf2',
     secondary: '#f28200',
     shape: '#FFFFFF',
-    placeholder: '#cecece',
-    background_primary: '#fafafa',
+    background_primary: '#F0F2F5',
     background_secondary: '#FFFFFF',
     title: '#323232',
     text: '#656565',
-    favorite: '#e63946',
+    error: '#e63946',
   },
 
   fonts: {

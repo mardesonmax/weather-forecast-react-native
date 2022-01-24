@@ -64,11 +64,12 @@ export const Description = styled.Text`
 export const WeatherItems = styled.ScrollView.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
-})`
-  margin: 0 16px;
-`;
+  contentContainerStyle: {
+    paddingLeft: 16,
+  },
+})``;
 
-export const WeatherItem = styled.View<IWeatherItemProps>`
+export const WeatherItem = styled.TouchableOpacity<IWeatherItemProps>`
   min-width: ${RFValue(80)}px;
   flex: 1;
   padding: 8px;
