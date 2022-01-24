@@ -17,7 +17,7 @@ export const Content = styled.ScrollView.attrs({
   top: ${getStatusBarHeight() + 56}px;
 `;
 
-export const NotHistorySearch = styled.Text`
+export const SearchMessage = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.primary_500};
   font-size: ${RFValue(20)}px;

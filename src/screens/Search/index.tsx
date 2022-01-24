@@ -10,7 +10,7 @@ import { Search } from '../../components/Search';
 import { WeatherItem } from '../../components/WeatherItem';
 import { WeatherDTO } from '../../dtos/WeatherDTO';
 import { useWeather } from '../../hooks/weather';
-import { Container, Content, NotHistorySearch, TextExists } from './styles';
+import { Container, Content, SearchMessage, TextExists } from './styles';
 
 export const SearchPage: React.FC = () => {
   const [weather, setWeather] = useState({} as WeatherDTO);
@@ -72,7 +72,9 @@ export const SearchPage: React.FC = () => {
             )}
           </WeatherItem>
         ) : (
-          <NotHistorySearch>Nenhuma pesquisa recente</NotHistorySearch>
+          <SearchMessage>
+            Pesquise e adicione as cidade que você deseja ter informações
+          </SearchMessage>
         )}
       </Content>
     </Container>
