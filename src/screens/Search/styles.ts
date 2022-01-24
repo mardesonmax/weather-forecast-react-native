@@ -24,3 +24,9 @@ export const NotHistorySearch = styled.Text`
   text-align: center;
   margin-top: 48px;
 `;
+
+export const TextExists = styled.Text`
+  color: ${({ theme }) => theme.colors.primary};
+  font-family: ${({ theme }) => theme.fonts.primary_500};
+  font-size: ${RFValue(16)}px;
+`;

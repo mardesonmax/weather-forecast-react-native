@@ -8,17 +8,27 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/Button';
 import { Search } from '../../components/Search';
 import { WeatherItem } from '../../components/WeatherItem';
-import { IWeatherProps, useWeather } from '../../hooks/weather';
-import { Container, Content, NotHistorySearch } from './styles';
+import { WeatherDTO } from '../../dtos/WeatherDTO';
+import { useWeather } from '../../hooks/weather';
+import { Container, Content, NotHistorySearch, TextExists } from './styles';
 
 export const SearchPage: React.FC = () => {
-  const [weather, setWeather] = useState({} as IWeatherProps);
+  const [weather, setWeather] = useState({} as WeatherDTO);
+  const [weatherExitId, setWeatherExitId] = useState('');
 
   const navigation = useNavigation();
-  const { addWeather } = useWeather();
+  const { addWeather, weathers } = useWeather();
 
   const handleActiveSearch = (): void => {
     navigation.goBack();
+  };
+
+  const existWeatherInList = (name: string): void => {
+    const findWeatherExits = weathers.find(
+      (currentWeather) => currentWeather.name === name,
+    );
+
+    setWeatherExitId(findWeatherExits ? findWeatherExits.id : '');
   };
 
   const handleSearchSelect = (value: GooglePlaceDetail): void => {
@@ -31,6 +41,8 @@ export const SearchPage: React.FC = () => {
       lat: value.geometry.location.lat,
       favorite: false,
     });
+
+    existWeatherInList(value.name);
   };
 
   const handleAddWeather = useCallback(async () => {
@@ -53,7 +65,11 @@ export const SearchPage: React.FC = () => {
       <Content>
         {weather.name ? (
           <WeatherItem data={{ city: weather.name, country: weather.country }}>
-            <Button title="ADICIONAR" onPress={() => handleAddWeather()} />
+            {weatherExitId ? (
+              <TextExists>Em sua lista</TextExists>
+            ) : (
+              <Button title="ADICIONAR" onPress={() => handleAddWeather()} />
+            )}
           </WeatherItem>
         ) : (
           <NotHistorySearch>Nenhuma pesquisa recente</NotHistorySearch>
