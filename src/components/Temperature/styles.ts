@@ -8,12 +8,18 @@ interface IButtonProps {
 
 export const Container = styled.View`
   flex-direction: row;
+  align-items: flex-start;
 `;
 
 export const TemperatureText = styled.Text`
   font-size: ${RFValue(40)}px;
   font-family: ${({ theme }) => theme.fonts.primary_400};
   color: ${({ theme }) => theme.colors.secondary};
+`;
+
+export const TemperatureButtons = styled.View`
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const TemperatureButton = styled.TouchableOpacity`
@@ -24,7 +30,6 @@ export const TemperatureSeparator = styled.TouchableOpacity`
   width: 2px;
   height: 18px;
   background: ${({ theme }) => theme.colors.secondary};
-  margin-top: 8px;
 `;
 
 export const TemperatureButtonText = styled.Text<IButtonProps>`

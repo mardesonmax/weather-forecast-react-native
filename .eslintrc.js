@@ -31,6 +31,8 @@ module.exports = {
   ],
   rules: {
     camelcase: 'off',
+    'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
     'react/jsx-curly-newline': 'off',
     'react/no-unused-prop-types': 'off',
     'react/require-default-props': 'off',

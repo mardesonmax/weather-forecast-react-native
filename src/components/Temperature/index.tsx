@@ -1,26 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Container,
   TemperatureButton,
+  TemperatureButtons,
   TemperatureButtonText,
   TemperatureSeparator,
   TemperatureText,
 } from './styles';
 
-export const Temperature: React.FC = () => {
+type TempType = {
+  temp: number;
+};
+
+type TemperatureType = 'fahrenheit' | 'celsius';
+
+export const Temperature: React.FC<TempType> = ({ temp }) => {
+  const [temperature, setTemperature] = useState(0);
+  const [temperatureType, setTemperatureType] =
+    useState<TemperatureType>('celsius');
+
+  const handleTemperature = (type: TemperatureType): void => {
+    const modifyTemperature =
+      type === 'celsius' ? temp : Math.ceil((temp * 9) / 5 + 32);
+
+    setTemperatureType(type);
+    setTemperature(modifyTemperature);
+  };
+
+  useEffect(() => {
+    const modifyTemperature =
+      temperatureType === 'celsius' ? temp : Math.ceil((temp * 9) / 5 + 32);
+    setTemperature(modifyTemperature);
+  }, [temperatureType, temp]);
+
   return (
     <Container>
-      <TemperatureText>32</TemperatureText>
-      <TemperatureButton>
-        <TemperatureButtonText isActive>°C</TemperatureButtonText>
-      </TemperatureButton>
+      <TemperatureText>{temperature}</TemperatureText>
 
-      <TemperatureSeparator />
+      <TemperatureButtons>
+        <TemperatureButton onPress={() => handleTemperature('celsius')}>
+          <TemperatureButtonText isActive={temperatureType === 'celsius'}>
+            °C
+          </TemperatureButtonText>
+        </TemperatureButton>
 
-      <TemperatureButton>
-        <TemperatureButtonText isActive={false}>°F</TemperatureButtonText>
-      </TemperatureButton>
+        <TemperatureSeparator />
+
+        <TemperatureButton onPress={() => handleTemperature('fahrenheit')}>
+          <TemperatureButtonText isActive={temperatureType === 'fahrenheit'}>
+            °F
+          </TemperatureButtonText>
+        </TemperatureButton>
+      </TemperatureButtons>
     </Container>
   );
 };

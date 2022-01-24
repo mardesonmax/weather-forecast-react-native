@@ -15,25 +15,28 @@ interface IWeatherContentProps extends TouchableOpacityProps {
   data: {
     city: string;
     country: string;
-    temperature?: string;
+    temperature?: number;
   };
+  favorite?: boolean;
 }
 
-export const WeatherContent: React.FC<IWeatherContentProps> = ({
+export const WeatherItem: React.FC<IWeatherContentProps> = ({
   data,
   children,
+  favorite,
   ...rest
 }) => {
   return (
-    <Container {...rest}>
+    <Container {...rest} favorite={favorite}>
       <WeatherHeader>
         <WeatherTitleDescription>
           <WeatherTitle>{data.city}</WeatherTitle>
           <WeatherDescription>{data.country}</WeatherDescription>
         </WeatherTitleDescription>
 
-        {data.temperature && <Temperature />}
+        {data.temperature && <Temperature temp={data.temperature} />}
       </WeatherHeader>
+
       <WeatherBody>{children}</WeatherBody>
     </Container>
   );
