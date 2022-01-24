@@ -3,11 +3,13 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../screens/Home';
+import { ListWeather } from '../screens/ListWeather';
 import { SearchPage } from '../screens/Search';
 
 export type IAppStackParamsList = {
   Home: undefined;
   SearchPage: undefined;
+  ListWeather: undefined;
 };
 
 const { Navigator, Screen } = createStackNavigator<IAppStackParamsList>();
@@ -22,6 +24,7 @@ const AppRoutes: React.FC = () => {
     >
       <Screen name="Home" component={Home} />
       <Screen name="SearchPage" component={SearchPage} />
+      <Screen name="ListWeather" component={ListWeather} />
     </Navigator>
   );
 };
