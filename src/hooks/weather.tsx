@@ -20,6 +20,7 @@ interface IWeatherContextData {
   weathers: WeatherTemperatureDTO[];
   addWeather(weather: WeatherDTO): Promise<void>;
   handleWeatherFavorite(weatherId: string, favorite: boolean): Promise<void>;
+  removeWeather(weatherId: string): Promise<void>;
   loading: boolean;
 }
 
@@ -78,6 +79,28 @@ const WeatherProvider: React.FC = ({ children }) => {
     [],
   );
 
+  const removeWeather = useCallback(
+    async (weatherId: string): Promise<void> => {
+      try {
+        const newWeather = data.filter((weather) => weather.id !== weatherId);
+
+        setData(newWeather);
+
+        await database.write(async () => {
+          const weather = await database
+            .get<ModelWeather>('weathers')
+            .find(weatherId);
+          await weather.destroyPermanently();
+        });
+      } catch {
+        Alert.alert('Error ao tentar excluir cidade');
+      } finally {
+        setLoading(false);
+      }
+    },
+    [data],
+  );
+
   const handleWeatherFavorite = useCallback(
     async (weatherId: string, favorite: boolean): Promise<void> => {
       setData((state) =>
@@ -110,9 +133,10 @@ const WeatherProvider: React.FC = ({ children }) => {
       weathers: data,
       addWeather,
       handleWeatherFavorite,
+      removeWeather,
       loading,
     }),
-    [data, addWeather, handleWeatherFavorite, loading],
+    [data, addWeather, handleWeatherFavorite, removeWeather, loading],
   );
 
   return (

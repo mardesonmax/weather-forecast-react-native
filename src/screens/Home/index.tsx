@@ -39,7 +39,8 @@ export const Home: React.FC = () => {
   const [weathersTemperaturesFavorites, setWeathersTemperaturesFavorites] =
     useState<WeatherTemperatureDTO[]>([]);
 
-  const { weathers, handleWeatherFavorite, loading } = useWeather();
+  const { weathers, handleWeatherFavorite, removeWeather, loading } =
+    useWeather();
 
   const navigation = useNavigation();
 
@@ -143,7 +144,11 @@ export const Home: React.FC = () => {
                   />
                 </ButtonFavorite>
 
-                <ButtonRemove />
+                <ButtonRemove
+                  onPress={() => {
+                    removeWeather(weather.id);
+                  }}
+                />
               </Buttons>
             </WeatherItem>
           ))}
@@ -189,7 +194,11 @@ export const Home: React.FC = () => {
                     />
                   </ButtonFavorite>
 
-                  <ButtonRemove />
+                  <ButtonRemove
+                    onPress={() => {
+                      removeWeather(weather.id);
+                    }}
+                  />
                 </Buttons>
               </WeatherItem>
             ),
