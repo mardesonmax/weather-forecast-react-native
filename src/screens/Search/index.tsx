@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import { GooglePlaceDetail } from 'react-native-google-places-autocomplete';
 import uuid from 'react-native-uuid';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '../../components/Button';
+import { Loading } from '../../components/Loading';
 import { Search } from '../../components/Search';
 import { WeatherItem } from '../../components/WeatherItem';
 import { WeatherDTO } from '../../dtos/WeatherDTO';
@@ -17,7 +18,7 @@ export const SearchPage: React.FC = () => {
   const [weatherExitId, setWeatherExitId] = useState('');
 
   const navigation = useNavigation();
-  const { addWeather, weathers } = useWeather();
+  const { addWeather, weathers, loading } = useWeather();
 
   const handleActiveSearch = (): void => {
     navigation.goBack();
@@ -47,6 +48,7 @@ export const SearchPage: React.FC = () => {
 
   const handleAddWeather = useCallback(async () => {
     await addWeather(weather);
+
     navigation.navigate('Home');
   }, [addWeather, weather, navigation]);
 
@@ -61,6 +63,8 @@ export const SearchPage: React.FC = () => {
         onClose={() => handleActiveSearch()}
         onSelected={handleSearchSelect}
       />
+
+      <Loading isActive={loading} />
 
       <Content>
         {weather.name ? (
