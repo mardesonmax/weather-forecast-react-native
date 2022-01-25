@@ -27,7 +27,8 @@ Todo o projeto está sendo feito em um ambiente **Node**, utilizando uma versão
 - [TypeScript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/)
 - [React Native](https://reactnative.dev/)
-- [Expo](https://reactnative.dev/)
+- [Expo](https://docs.expo.dev/)
+- [Expo](https://yarnpkg.com/)
 
 # Requerimentos
 
@@ -38,7 +39,6 @@ Todo o projeto está sendo feito em um ambiente **Node**, utilizando uma versão
 - Node.js
 - Android Studio
 - Yarn
-/
 
 ## Como executar?
 
