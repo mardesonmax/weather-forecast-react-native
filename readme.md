@@ -28,7 +28,7 @@ Todo o projeto está sendo feito em um ambiente **Node**, utilizando uma versão
 - [Node.js](https://nodejs.org/)
 - [React Native](https://reactnative.dev/)
 - [Expo](https://docs.expo.dev/)
-- [Expo](https://yarnpkg.com/)
+- [Yarn](https://yarnpkg.com/)
 
 # Requerimentos
 
